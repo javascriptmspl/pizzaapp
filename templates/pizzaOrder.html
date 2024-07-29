@@ -1,0 +1,40 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block pagecontent %}
+<section class="bg-very-light-gray position-relative overlap-height">
+    <div class="container">
+        <!-- <div class="position-absolute fs-275 lg-fs-250 xs-fs-180 fw-600 ls-minus-10px text-uppercase text-white alt-font left-0px right-0px text-center bottom-minus-100px xs-bottom-minus-50px d-none d-sm-block">signature</div> -->
+        <div class="row justify-content-center mb-3 md-mb-30px">
+            <div class="col-lg-8 align-items-center justify-content-center z-index-1 d-block d-md-flex text-center text-md-start" data-anime='{ "el": "childs", "translateY": [15,0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
+                <span class="text-base-color fs-28 ls-minus-05px alt-font fw-300 border-end sm-border-end-0 border-color-transparent-dark-very-light pt-10px pb-10px pe-30px me-30px text-uppercase sm-me-0 sm-pe-0">Our signature</span>
+                <h2 class="mb-0 alt-font text-dark-gray text-uppercase fw-700 ls-minus-1px">Popular pizza</h2>
+            </div> 
+        </div>
+        <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-2 mb-6 md-mb-8 xs-mb-0 justify-content-center" data-anime='{ "el": "childs", "translateY": [15, 0], "opacity": [0,1], "duration": 600, "delay": 100, "staggervalue": 300, "easing": "easeOutQuad" }'>
+            <div class="col text-center transition-inner-all md-mb-30px">
+                <!-- start services box style --> 
+                <div class="services-box-style-04 hover-box last-paragraph-no-margin border-radius-4px overflow-hidden position-relative ps-20px pe-20px lg-ps-10px lg-pe-10px pt-30px pb-40px box-shadow-extra-large-hover">
+                    <div class="mb-5px">
+                        <img src="{% static 'images/demo-pizza-parlor-home-01.webp' %}" alt="" data-bottom-top="transform: rotate(15deg)" data-top-bottom="transform:rotate(-15deg)">
+                    </div>
+                    <div class="box-overlay bg-white z-index-minus-1"></div>
+                    <div>
+                        <div class="bg-yellow border-radius-4px mb-10px overflow-hidden d-inline-flex">
+                            <div class="review-star-icon review-star-icon-white fs-17 ps-15px pe-15px lh-36 align-self-center">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="text-white fs-17 lh-34 alt-font fw-500 bg-dark-gray ps-10px pe-10px">5.0</span>
+                        </div>
+                        <div class="fs-20 lh-34 alt-font text-dark-gray text-uppercase">Mexican green wave</div>
+                        <span class="fs-24 fw-700 alt-font ls-minus-1px text-dark-gray"><del class="me-10px text-base-color">$25.00</del>$19.00</span>
+                    </div>
+                </div>
+                <!-- end services box style --> 
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

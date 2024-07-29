@@ -138,3 +138,15 @@ def declineorder(request,orderpk):
 	return redirect(request.META['HTTP_REFERER'])
 
 
+# for testing
+def pizzaHome(request):
+    return render(request, "demo-pizza-parlor.html")
+def pizzaLogin(request):
+    return render(request, "logindemo.html")
+def pizzaSignup(request):
+    return render(request, "signupDemo.html")
+
+def pizzaOrder(request):
+    return render(request, "pizzaOrder.html")
+
+

@@ -1,0 +1,203 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html> -->
+
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <title>Pizza</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="ThemeZaa">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta name="description" content="Elevate your online presence with Crafto - a modern, versatile, multipurpose Bootstrap 5 responsive HTML5, SCSS template using highly creative 48+ ready demos.">
+        <!-- favicon icon -->
+        <link rel="shortcut icon" href="images/favicon.png">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        <!-- google fonts preconnect -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- slider revolution CSS files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'js/revolution/css/settings.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/revolution/css/layers.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/revolution/css/navigation.css' %}">
+        <!-- style sheets and font icons  -->
+        <link rel="stylesheet" href="{% static 'css/vendors.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/icon.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
+        <link rel="stylesheet" href="{% static 'demos/pizza-parlor/pizza-parlor.css' %}" />
+    </head>
+    <body data-mobile-nav-style="classic">
+        <!-- start header -->
+        <header>
+            <!-- start navigation -->
+            <nav class="navbar navbar-expand-lg header-dark bg-gradient-dark-transparent center-logo disable-fixed">
+                <div class="container-fluid">
+                    <div class="col-auto col-lg-2 menu-logo">
+                        <div class="d-none d-lg-block"> 
+                            <div class="alt-font fs-19 lg-fs-16 widget-text fw-600"><span class="w-50px h-50px bg-black-transparent-light d-inline-block align-middle text-center me-10px border-radius-100px fs-17 lh-44 lg-me-5px lg-w-40px lg-h-40px lg-fs-15 lg-lh-36"><i class="feather icon-feather-phone-call"></i></span><a href="tel:1800222000" class="text-white">1 800 222 000</a></div>
+                        </div> 
+                        <a class="navbar-brand" href="demo-pizza-parlor.html">
+                            <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="default-logo">
+                            <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="alt-logo">
+                            <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="mobile-logo">
+                        </a>   
+                    </div>
+                    <div class="col-auto col-lg-8 menu-order">
+                        <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                            <span class="navbar-toggler-line"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">  
+                            <ul class="navbar-nav navbar-left justify-content-end alt-font"> 
+                                <li class="nav-item"><a href="demo-pizza-parlor.html" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-about.html" class="nav-link">About</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-menu.html" class="nav-link">Menu</a></li> 
+                            </ul>
+                            <ul class="navbar-nav navbar-right justify-content-start alt-font"> 
+                                <li class="nav-item"><a href="demo-pizza-parlor-chefs.html" class="nav-link">Chefs</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-franchise.html" class="nav-link">Franchise</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-contact.html" class="nav-link">contact</a></li> 
+                            </ul> 
+                        </div>
+                    </div> 
+                    <div class="col-auto col-lg-2 text-end">
+                        <div class="header-icon"> 
+                            <div class="header-button"> 
+                                <a href="demo-pizza-parlor-contact.html" class="btn btn-medium btn-rounded btn-black-transparent-light text-white btn-hover-animation-switch">
+                                    <span>
+                                        <span class="btn-text">Order online</span>
+                                        <span class="btn-icon"><i class="feather icon-feather-shopping-bag"></i></span>
+                                        <span class="btn-icon"><i class="feather icon-feather-shopping-bag"></i></span>
+                                    </span> 
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- end navigation -->
+        </header>
+{% block pagecontent %}
+
+{% endblock %}
+        <!-- end section -->
+        <!-- start footer -->
+        <footer class="position-relative pb-0"> 
+            <div class="footer-bg background-position-center-top position-absolute h-100 w-100 top-0px left-0px z-index-minus-1" style="background-image: url({% static 'images/demo-pizza-parlor-home-bg-03.jpg' %});"></div>
+            
+            <div class="pt-15px pb-15px md-pb-30px border-top border-color-transparent-white-light">
+                <div class="container">
+                    <div class="row align-items-center"> 
+                        <div class="col-lg-7 text-center text-lg-start sm-mb-10px">
+                            <ul class="footer-navbar fs-16"> 
+                                <li class="nav-item"><a href="demo-pizza-parlor.html" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-about.html" class="nav-link">About</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-menu.html" class="nav-link">Menu</a></li> 
+                                <li class="nav-item"><a href="demo-pizza-parlor-chefs.html" class="nav-link">Chefs</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-franchise.html" class="nav-link">Franchise</a></li>
+                                <li class="nav-item"><a href="demo-pizza-parlor-contact.html" class="nav-link">Contact</a></li> 
+                            </ul> 
+                        </div> 
+                        <div class="col-lg-5 fs-16 text-center text-lg-end last-paragraph-no-margin text-end">
+                            <p>&copy; 2024 All copyrghts are reserved</p>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+        <!-- start subscription popup -->
+        
+        <!-- end subscription popup -->
+        <!-- javascript libraries -->
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendors.min.js' %}"></script>
+
+        <!-- slider revolution core javaScript files -->
+        <!-- <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.revolution.min.js' %}"></script> -->
+        <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+
+        <!-- slider revolution extension scripts. ONLY NEEDED FOR LOCAL TESTING -->
+        <!-- <script type="text/javascript" src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.migration.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script> -->
+        <!-- Slider Revolution add on files -->
+        <script type='text/javascript' src="{% static 'js/revolution/revolution-addons/particles/js/revolution.addon.particles.min.js?ver=1.0.3' %}"></script>
+        <!-- Slider's main "init" script -->
+        <script type="text/javascript">
+            /* https://learn.jquery.com/using-jquery-core/document-ready/ */
+            jQuery(document).ready(function () {
+                /* initialize the slider based on the Slider's ID attribute from the wrapper above */
+                jQuery('#pizza-parlor-slider').show().revolution({
+                    sliderType: "standard",
+                    /* sets the Slider's default timeline */
+                    delay: 9000,
+                    /* options are 'auto', 'fullwidth' or 'fullscreen' */
+                    sliderLayout: 'fullwidth',
+                    /* RESPECT ASPECT RATIO */
+                    autoHeight: 'off',
+                    /* options that disable autoplay */
+                    stopLoop: "on",
+                    stopAfterLoops: 0,
+                    stopAtSlide: 1,
+                    parallax: {
+                        type: 'mouse+scroll',
+                        origo: 'slidercenter',
+                        speed: 400,
+                        levels: [2, 4, 6, 8, 10, 12, 14, 16,
+                            45, 46, 47, 48, 49, 50, 51, 55],
+                        disable_onmobile: 'on'
+                    },
+                    /* Lazy Load options are "all", "smart", "single" and "none" */
+                    lazyType: "smart",
+                    spinner: "spinner0",
+                    /* DISABLE FORCE FULL-WIDTH */
+                    fullScreenAlignForce: 'off',
+                    hideThumbsOnMobile: 'off',
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+                    gridwidth: [1240, 1024, 778, 480],
+                    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+                    gridheight: [1276, 1000, 960, 720],
+                    /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+                    visibilityLevels: [1240, 1024, 1024, 480],
+                    fallbacks: {
+                        simplifyAll: 'on',
+                        nextSlideOnWindowFocus: 'off',
+                        disableFocusListener: false
+                    },
+                });
+            });
+        </script>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/revolution/js/jquery.themepunch.revolution.min.js' %}"></script> -->
+    </body>
+</html>

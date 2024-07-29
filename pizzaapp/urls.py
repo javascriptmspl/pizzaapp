@@ -3,6 +3,9 @@ from django.contrib import admin
 from django.urls import path
 from .views import declineorder,acceptorder,adminorders,userorders,placeorder,userlogout,userauthenticate,customerwelcomeview,userloginview,signupuser,homepageview,deletepizza,addpizza,adminloginview,adminhomepageview,authenticateadmin,logoutadmin
 
+# for test
+from .views import pizzaHome, pizzaLogin, pizzaSignup, pizzaOrder
+
 urlpatterns = [
 	path('admin/',adminloginview,name = 'adminloginpage'),
 	path('adminauthenticate/',authenticateadmin),
@@ -20,7 +23,14 @@ urlpatterns = [
 	path('userorders/',userorders),
 	path('adminorders/',adminorders),
 	path('acceptorder/<int:orderpk>/',acceptorder),
-	path('declineorder/<int:orderpk>/',declineorder)
+	path('declineorder/<int:orderpk>/',declineorder),
+ 
+	# For testing
+	
+	path('pizzaHome/',pizzaHome,name="pizzaHome"),
+ 	path('pizzaLogin/', pizzaLogin, name="loginDemo"),
+	path('pizzaSignup/',pizzaSignup, name="pizzaSignup"),
+	path('pizzaOrder/',pizzaOrder,name="pizzaOrder")
 
 
 ]
