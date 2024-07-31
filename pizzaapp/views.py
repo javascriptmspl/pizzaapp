@@ -1,27 +1,33 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import PizzaModel,CustomerModel,OrderModel
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 def adminloginview(request):
 	return render(request,"pizzaapp/adminlogin.html")
 
 def authenticateadmin(request):
-	username = request.POST['username']
-	password = request.POST['password']
-	
-	user = authenticate(username = username,password = password)	
+    username = request.POST.get('username')
+    password = request.POST.get('password')
 
-	# user exists
-	if user is not None and user.username=="admin":
-		login(request,user)
-		return redirect('adminhomepage')
+    # Authenticate user
+    user = authenticate(username=username, password=password)
 
-	# user doesnt exists
-	if user is None:
-		messages.add_message(request,messages.ERROR,"invalid credentials")
-		return redirect('adminloginpage')
+    # Check if user exists
+    if user is not None:
+        if user.username == "admin":
+            login(request, user)
+            return redirect('adminhomepage')
+        else:
+            messages.add_message(request, messages.ERROR, "You are not authorized to access this page.")
+            return redirect('adminloginpage')
+    else:
+        messages.add_message(request, messages.ERROR, "Invalid credentials")
+        return redirect('adminloginpage')
 
 def adminhomepageview(request):
 	context = {'pizzas' : PizzaModel.objects.all()}
@@ -32,11 +38,25 @@ def logoutadmin(request):
 	return redirect('adminloginpage')
 
 def addpizza(request):
-	# write a code to add the pizza into the database
-	name = request.POST['pizza']
-	price = request.POST['price']
-	PizzaModel(name = name,price = price).save()
-	return redirect('adminhomepage')
+    if request.method == "POST":
+        name = request.POST.get('pizza')
+        price = request.POST.get('price')
+        img = request.FILES.get('img')  # Handle image upload
+
+        if not name or not price:
+            messages.add_message(request, messages.ERROR, "Please fill in all fields.")
+            return redirect('adminhomepage')
+        
+        try:
+            # Save pizza with image
+            PizzaModel.objects.create(name=name, price=price, img=img)
+            messages.add_message(request, messages.SUCCESS, "Pizza added successfully.")
+        except Exception as e:
+            messages.add_message(request, messages.ERROR, f"An error occurred: {e}")
+
+    return redirect('adminhomepage')
+
+
 def deletepizza(request,pizzapk):
 	PizzaModel.objects.filter(id = pizzapk).delete()
 	return redirect('adminhomepage')
@@ -90,36 +110,50 @@ def userlogout(request):
 	
 	return redirect('userloginpage')
 
-def placeorder(request):
-	if not request.user.is_authenticated:
-		return redirect('userloginpage')
+def placeorder(request, pizza_id):
+    pizza = get_object_or_404(PizzaModel, id=pizza_id)  # Get the pizza instance
 
-	username = request.user.username
-	phoneno = CustomerModel.objects.filter(userid = request.user.id)[0].phoneno
-	address = request.POST['address']
-	ordereditems = ""
-	for pizza in PizzaModel.objects.all():
-		pizzaid = pizza.id
-		name = pizza.name
-		price = pizza.price
+    if request.method == 'POST':
+        # Retrieve data from the form
+        username = request.POST.get('username')
+        phoneno = request.POST.get('phoneno')
+        address = request.POST.get('address')
+        
+        if not request.user.is_authenticated:
+            messages.error(request, "You must be logged in to place an order.")
+            return redirect('userloginpage')
+    
+        if not username:
+            username = request.user.username
 
-		quantity = request.POST.get(str(pizzaid)," ")
+        if not phoneno:
+            phoneno = CustomerModel.objects.filter(userid=request.user.id).first().phoneno
+        
+        ordereditems = pizza.name  
+        status = "Pending"  # Initial status
+
+        # Create and save the order
+        OrderModel.objects.create(
+            username=username, phoneno=phoneno, address=address,
+            ordereditems=ordereditems, status=status
+        )
+        messages.success(request, "Order placed successfully.")
+        return redirect(request.path)
+
+    return render(request, 'pizzaapp/placeOrder.html', {'pizza': pizza})
 
 
+# def userorders(request):
+#     orders = OrderModel.objects.filter(username=request.user.username)
+#     return render(request, 'pizzaapp/userorders.html', {'orders': orders})
 
-
-		if str(quantity)!="0" and str(quantity)!=" ":
-			ordereditems = ordereditems + name+" " + "price : " + str(int(quantity)*int(price)) +" "+ "quantity : "+ quantity+"    "
-
-	print(ordereditems)
-
-	OrderModel(username = username,phoneno = phoneno,address = address,ordereditems = ordereditems).save()
-	messages.add_message(request,messages.ERROR,"order succesfully placed")
-	return redirect('customerpage')
 def userorders(request):
-	orders = OrderModel.objects.filter(username = request.user.username)
-	context = {'orders' : orders}
-	return render(request,'pizzaapp/userorders.html',context)
+    username = request.user.username
+    print(f"Current username: {username}")  # Debug statement
+    orders = OrderModel.objects.filter(username=username)
+    print(f"Orders found: {orders}")  # Debug statement
+    return render(request, 'pizzaapp/userorders.html', {'orders': orders})
+
 
 def adminorders(request):
 	orders = OrderModel.objects.all()
@@ -137,16 +171,13 @@ def declineorder(request,orderpk):
 	order.save()
 	return redirect(request.META['HTTP_REFERER'])
 
-
-# for testing
-def pizzaHome(request):
-    return render(request, "demo-pizza-parlor.html")
-def pizzaLogin(request):
-    return render(request, "logindemo.html")
-def pizzaSignup(request):
-    return render(request, "signupDemo.html")
-
 def pizzaOrder(request):
-    return render(request, "pizzaOrder.html")
+    pizzas = PizzaModel.objects.all()
+    context = {
+		'pizzas':pizzas
+	}
+    return render(request, "pizzaapp/pizzaOrder.html",context)
+
+
 
 

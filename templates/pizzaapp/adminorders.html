@@ -1,17 +1,34 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1 style="text-align: center">My Orders</h1>
-{% for order in orders %}
-<div style="margin: 40px" class="alert alert-warning" role = "alert">
-	<p style="text-align: center;">{{order.username}}</p>
-	<p style="text-align: center;">{{order.phoneno}}</p>
-	<p style="text-align: center;">{{order.address}}</p>
-	<p style="text-align: center;">{{order.ordereditems}}</p>
-	<p style="text-align: center;">order status : {{order.status}}</p>
-	<div class="container" style="width: 200px;margin: auto">
-		<a href="/acceptorder/{{order.id}}/" style="display: inline;" class="btn btn-success">accept</a>
-	<a href="/declineorder/{{order.id}}/" style="display: inline" class="btn btn-danger">decline</a>
-	</div>
-</div>
-{% endfor %}
+{% extends 'base2.html' %}
+{% block pagecontent %}
+
+<section id="network" class="bg-very-light-gray">
+    <div class="container">
+        <div class="row justify-content-center mb-2 sm-mb-40px">
+            <div class="col-12 align-items-center justify-content-center z-index-1 d-block d-md-flex text-center" data-anime='{ "el": "childs", "translateY": [15,0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }'>
+                <h1 style="text-align: center">My Orders</h1>
+            </div> 
+        </div>
+        <div class="row row-cols-md-1 justify-content-center mb-9 sm-mb-0">
+            <div class="col-xl-9 col-lg-10" data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }'>
+				{% for order in orders %}
+				<div style="margin: 40px" class="alert alert-warning" role = "alert">
+					<p style="text-align: center;">{{order.username}}</p>
+					<p style="text-align: center;">{{order.phoneno}}</p>
+					<p style="text-align: center;">{{order.address}}</p>
+					<p style="text-align: center;">{{order.ordereditems}}</p>
+					<p style="text-align: center;">order status : {{order.status}}</p>
+					<div class="container" style="width: 200px;margin: auto">
+						<a href="/acceptorder/{{order.id}}/" style="display: inline; background-color:rgb(82, 193, 82); color:white" class="btn">accept</a>
+						<a href="/declineorder/{{order.id}}/" style="display: inline;  background-color:rgb(205, 88, 88); color:white" class="btn">decline</a>
+					</div>
+				</div>
+				{% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
+
+
+

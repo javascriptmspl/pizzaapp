@@ -39,17 +39,18 @@
         <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
         <link rel="stylesheet" href="{% static 'demos/pizza-parlor/pizza-parlor.css' %}" />
     </head>
+    
     <body data-mobile-nav-style="classic">
         <!-- start header -->
-        <header>
+        <header style="position: fixed; top: 0; width: 100%; z-index: 11;">
             <!-- start navigation -->
-            <nav class="navbar navbar-expand-lg header-dark bg-gradient-dark-transparent center-logo disable-fixed">
+            <nav style="background: #df4b4b;" class="navbar navbar-expand-lg header-dark center-logo disable-fixed" >
                 <div class="container-fluid">
                     <div class="col-auto col-lg-2 menu-logo">
                         <div class="d-none d-lg-block"> 
                             <div class="alt-font fs-19 lg-fs-16 widget-text fw-600"><span class="w-50px h-50px bg-black-transparent-light d-inline-block align-middle text-center me-10px border-radius-100px fs-17 lh-44 lg-me-5px lg-w-40px lg-h-40px lg-fs-15 lg-lh-36"><i class="feather icon-feather-phone-call"></i></span><a href="tel:1800222000" class="text-white">1 800 222 000</a></div>
                         </div> 
-                        <a class="navbar-brand" href="demo-pizza-parlor.html">
+                        <a class="navbar-brand" href="{% url 'customerpage' %}">
                             <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="default-logo">
                             <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="alt-logo">
                             <img src="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" data-at2x="{% static 'images/demo-pizza-parlor-logo-white@2x.webp' %}" alt="" class="mobile-logo">
@@ -64,21 +65,25 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">  
                             <ul class="navbar-nav navbar-left justify-content-end alt-font"> 
-                                <li class="nav-item"><a href="demo-pizza-parlor.html" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-about.html" class="nav-link">About</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-menu.html" class="nav-link">Menu</a></li> 
+                                <li class="nav-item"><a href="{% url 'customerpage' %}" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                                <li class="nav-item"><a href="{% url 'pizzaOrder' %}" class="nav-link">Menu</a></li> 
                             </ul>
                             <ul class="navbar-nav navbar-right justify-content-start alt-font"> 
-                                <li class="nav-item"><a href="demo-pizza-parlor-chefs.html" class="nav-link">Chefs</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-franchise.html" class="nav-link">Franchise</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-contact.html" class="nav-link">contact</a></li> 
+                                <li class="nav-item"><a href="#" class="nav-link">Chefs</a></li>
+                                <li class="nav-item"><a href="/userorders/" class="nav-link">Status</a></li>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a href="/userlogout/" class="nav-link">Logout</a></li> 
+                                {% else %}
+                                <li class="nav-item"><a href="{% url 'userloginpage' %}" class="nav-link">Login</a></li>
+                                {% endif %}
                             </ul> 
                         </div>
                     </div> 
                     <div class="col-auto col-lg-2 text-end">
                         <div class="header-icon"> 
                             <div class="header-button"> 
-                                <a href="demo-pizza-parlor-contact.html" class="btn btn-medium btn-rounded btn-black-transparent-light text-white btn-hover-animation-switch">
+                                <a href="{% url 'pizzaOrder' %}" class="btn btn-medium btn-rounded btn-black-transparent-light text-white btn-hover-animation-switch">
                                     <span>
                                         <span class="btn-text">Order online</span>
                                         <span class="btn-icon"><i class="feather icon-feather-shopping-bag"></i></span>
@@ -92,9 +97,12 @@
             </nav>
             <!-- end navigation -->
         </header>
-{% block pagecontent %}
+        <div class="mt-5">
+            {% block pagecontent %}
+            {% endblock %}
+        </div>
 
-{% endblock %}
+
         <!-- end section -->
         <!-- start footer -->
         <footer class="position-relative pb-0"> 
@@ -105,12 +113,12 @@
                     <div class="row align-items-center"> 
                         <div class="col-lg-7 text-center text-lg-start sm-mb-10px">
                             <ul class="footer-navbar fs-16"> 
-                                <li class="nav-item"><a href="demo-pizza-parlor.html" class="nav-link">Home</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-about.html" class="nav-link">About</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-menu.html" class="nav-link">Menu</a></li> 
-                                <li class="nav-item"><a href="demo-pizza-parlor-chefs.html" class="nav-link">Chefs</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-franchise.html" class="nav-link">Franchise</a></li>
-                                <li class="nav-item"><a href="demo-pizza-parlor-contact.html" class="nav-link">Contact</a></li> 
+                                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Menu</a></li> 
+                                <li class="nav-item"><a href="#" class="nav-link">Chefs</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Franchise</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li> 
                             </ul> 
                         </div> 
                         <div class="col-lg-5 fs-16 text-center text-lg-end last-paragraph-no-margin text-end">

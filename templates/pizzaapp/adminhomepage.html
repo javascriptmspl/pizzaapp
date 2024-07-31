@@ -1,42 +1,83 @@
-{% extends 'base.html' %}
-{% block content %}
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand">Welcome Admin</a>
-  <a href="/adminorders/" class="nav-item" style="text-decoration: none;color: black">
-  	all orders
-  </a>
-  <!-- <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
- -->
- 	<a class="btn btn-danger" href="/adminlogout/">logout</a>
-</nav>
+{% extends 'base2.html' %}
 
-
-<form method="post" action="/addpizza/">
-	{% csrf_token %}
-	<div class="container" style="width: 530px;display: block;margin: auto">
-		<input type="text" placeholder="name" class="form-control" name="pizza" style="width: 200px;display: inline;margin: auto">
-		<input type="text" class="form-control" placeholder="price" name="price" style="width: 200px;display: inline;margin: auto">
-	<input style="display: inline" type="submit" value="add" name="" class="btn btn-success">
-	</div>
-</form>
-
-<div class="container" style="width: 50%;display: block;margin: auto;margin-top: 80px">
-	<table style="width: 50%">
-	<tr>
-		<th>Pizza Name</th>
-		<th>Price</th>
-		<th>delete</th>
-	</tr>
-	{% for pizza in pizzas%}
-	<tr>
-		<td>{{pizza.name}}</td>
-		<td>{{pizza.price}}</td>
-		<td><a href="/deletepizza/{{pizza.id}}/" class="btn btn-danger">delete</a></td>
-	</tr>
-	{% endfor %}
-</table>
-</div>
+{% block pagecontent %}
+	<section id="network" class="bg-very-light-gray">
+		<h2 class="text-center">Admin Page</h2>
+		<div class="container">
+			<div class="text-center mb-3">
+				<a href="/adminorders/"  style="text-decoration: none;">
+					<button class="btn btn-dark-gray btn-medium btn-box-shadow btn-round-edge" type="submit">Check orders</button>
+				</a>
+				<a href="/adminlogout/"  style="text-decoration: none;">
+					<button class="btn btn-dark-gray btn-medium btn-box-shadow btn-round-edge" type="submit">Logout</button>
+				</a>
+			</div>
+			<div class="row justify-content-center mb-5 sm-mb-40px">
+				<div class="col-12 align-items-center justify-content-center z-index-1 d-block d-md-flex text-center" data-anime='{ "el": "childs", "translateY": [15,0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }'>
+					<form action="/addpizza/" method="post" class="row contact-form-style-02">
+						{% csrf_token %}
+						<div class="col-md-12 mb-25px">
+							<label class="form-label fs-14 text-uppercase text-dark-gray fw-600">Name</label>
+							<input class="border-0 box-shadow-large border-radius-4px form-control required" type="text" name="pizza" placeholder="name" />
+						</div>
+						
+						<div class="col-md-12 mb-25px">
+							<label class="form-label fs-14 text-uppercase text-dark-gray fw-600">Pizza</label>
+							<input class="border-0 box-shadow-large border-radius-4px form-control" type="text" name="price" placeholder="price" />
+						</div>
+						<div class="col-xxl-6 col-lg-7 col-md-8">
+							<!-- <p class="mb-0 fs-14 lh-26 text-center text-md-start">Don't have account ? <a href="{% url 'homepage' %}">Register here</a></p> -->
+							<input type="file" class="form-control-file" name="img">
+						</div>
+						<div class="col-xxl-6 col-lg-5 col-md-4 text-center text-md-end sm-mt-20px">
+							<input type="hidden" name="redirect" value="">
+							<button class="btn btn-dark-gray btn-medium btn-box-shadow btn-round-edge" type="submit">Add pizza</button>
+						</div>
+						<div class="col-12">
+							<div class="form-results mt-20px d-none"></div>
+						</div>
+					</form>
+					
+						
+				</div> 
+			</div>
+			<div class="row row-cols-md-1 justify-content-center mb-9 sm-mb-0">
+				<div class="col-xl-9 col-lg-10" data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 200, "easing": "easeOutQuad" }'>
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>Pizza Name</th>
+							<th>Price</th>
+							<th>Image</th>
+							<th>Delete</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for pizza in pizzas %}
+						<tr>
+							<td>{{ pizza.name }}</td>
+							<td>{{ pizza.price }}</td>
+							<td>
+							{% if pizza.img %}
+								<img src="{{ pizza.img.url }}" alt="{{ pizza.name }}" style="width: 100px; height: auto;">
+							{% else %}
+								No image
+							{% endif %}
+							</td>
+							<td>
+							<a href="/deletepizza/{{pizza.id}}/" class="btn btn-danger">Delete</a>
+							</td>
+						</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
+
+
+
+
+
